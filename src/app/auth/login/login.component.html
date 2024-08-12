@@ -1,0 +1,34 @@
+<!-- No es necesario pasar argumentos, ya que se tiene acceso al form en el componentes TS   -->
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>Login</h2>
+
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="email">Email</label>
+      <!-- Esto vincula el input al control de email establecido en el componente de clase -->
+      <input id="email" type="email" [formControl]="form.controls.email" />
+    </div>
+
+    <div class="control no-margin">
+      <label for="password">Password</label>
+      <!-- Manera facil de hacer bind con el nombre del elemento en nuestro componente -->
+      <input id="password" type="password" formControlName="password" />
+    </div>
+
+    <button class="button">Login</button>
+  </div>
+  <!--  @if(form.controls.email.touched && form.controls.email.dirty &&
+  form.controls.email.invalid){
+  <p class="control-error">Please enter a valid email</p>
+  } -->
+
+  @if(emailIsInvalid){
+  <p class="control-error">Please enter a valid email</p>
+  }
+
+  @if(passwordIsInvalid){
+    <p class="control-error">Please enter a valid password</p>
+    }
+
+</form>
